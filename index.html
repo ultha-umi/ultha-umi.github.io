@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun, Cintaku</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff9ff3);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            border: 5px solid #ff6b9d;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            animation: photoGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes photoGlow {
+            from { box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4); }
+            to { box-shadow: 0 15px 40px rgba(255, 107, 157, 0.8); }
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b9d, #f8b500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3em;
+            color: #c44569;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .letter-button {
+            background: linear-gradient(45deg, #ff6b9d, #c44569);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 10px 25px rgba(196, 69, 105, 0.4);
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+        
+        .letter-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(196, 69, 105, 0.6);
+        }
+        
+        .letter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .letter-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .letter {
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: letterAppear 0.8s ease-out;
+        }
+        
+        @keyframes letterAppear {
+            from {
+                transform: scale(0.5) rotate(-5deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        .letter-header {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5em;
+            color: #c44569;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #ff6b9d;
+            padding-bottom: 15px;
+        }
+        
+        .letter-content {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: #444;
+            text-align: left;
+        }
+        
+        .letter-content p {
+            margin-bottom: 20px;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8em;
+            color: #c44569;
+            text-align: right;
+            margin-top: 30px;
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff6b9d;
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .sparkle {
+            position: absolute;
+            color: gold;
+            font-size: 16px;
+            animation: sparkle 3s linear infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 107, 157, 0.9);
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(255, 107, 157, 1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    Klik untuk upload<br>foto istri tercinta
+                </div>
+                <input type="file" id="photoInput" accept="image/*" style="display: none;">
+            </div>
+            
+            <h1 class="title">Selamat Ulang Tahun</h1>
+            <p class="subtitle">Untuk istri tercinta yang selalu menerangi hidupku</p>
+            
+            <button class="letter-button" onclick="showLetter()">
+                💌 Buka Surat Cinta
+            </button>
+        </div>
+    </div>
+    
+    <div class="letter-overlay" id="letterOverlay">
+        <div class="letter">
+            <button class="close-button" onclick="hideLetter()">&times;</button>
+            <h2 class="letter-header">Surat Cinta Untukmu</h2>
+            <div class="letter-content">
+                <p>Istriku tersayang,</p>
+                
+                <p>Hari ini adalah hari yang istimewa, hari dimana malaikat terindah di dunia ini dilahirkan. Kamu adalah cahaya yang menerangi setiap sudut gelap dalam hidupku, sumber kebahagiaan yang tak pernah habis.</p>
+                
+                <p>Setiap detik bersamamu adalah anugerah yang tak ternilai. Senyummu adalah matahari yang menghangatkan hatiku, tawamu adalah musik terindah yang pernah kudengar. Dalam pelukanmu, aku menemukan rumah yang sesungguhnya.</p>
+                
+                <p>Di hari ulang tahunmu yang spesial ini, aku berdoa agar Allah selalu melindungimu, memberikanmu kesehatan, kebahagiaan, dan segala hal indah yang kamu impikan. Semoga setiap langkahmu selalu diberkahi, setiap doamu dikabulkan.</p>
+                
+                <p>Terima kasih telah menjadi istri terbaik, sahabat terdekat, dan cinta sejatiku. Bersamamu, setiap hari adalah perayaan cinta yang tak berujung.</p>
+                
+                <p>Happy Birthday, my love! Aku mencintaimu lebih dari yang bisa diungkapkan kata-kata. 💕</p>
+                
+                <div class="signature">
+                    Dengan segala cinta,<br>
+                    Suamimu yang mencintaimu selamanya
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="music-control" id="musicControl" onclick="toggleMusic()">🎵</button>
+    
+    <audio id="backgroundMusic" loop>
+        <!-- Musik akan dimuat dari URL online -->
+    </audio>
+
+    <script>
+        // Floating hearts animation
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 7000);
+        }
+        
+        // Create sparkles
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+        
+        // Start animations
+        setInterval(createHeart, 1000);
+        setInterval(createSparkle, 2000);
+        
+        // Photo upload functionality
+        const photoFrame = document.querySelector('.photo-frame');
+        const photoInput = document.getElementById('photoInput');
+        
+        photoFrame.addEventListener('click', () => {
+            photoInput.click();
+        });
+        
+        photoInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    photoFrame.innerHTML = `<img src="${e.target.result}" alt="Foto Istri">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Letter functionality
+        function showLetter() {
+            const overlay = document.getElementById('letterOverlay');
+            overlay.classList.add('show');
+            playMusic();
+        }
+        
+        function hideLetter() {
+            const overlay = document.getElementById('letterOverlay');
+            overlay.classList.remove('show');
+        }
+        
+        // Music functionality
+        let isPlaying = false;
+        const music = document.getElementById('backgroundMusic');
+        
+        // Set a romantic background music (you can replace this URL)
+        music.src = 'https://www.soundjay.com/misc/sounds/romantic-music.mp3';
+        
+        function playMusic() {
+            if (!isPlaying) {
+                music.play().catch(e => {
+                    console.log('Audio play failed:', e);
+                });
+                isPlaying = true;
+                document.getElementById('musicControl').innerHTML = '🔊';
+            }
+        }
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                isPlaying = false;
+                document.getElementById('musicControl').innerHTML = '🔇';
+            } else {
+                playMusic();
+            }
+        }
+        
+        // Close letter when clicking outside
+        document.getElementById('letterOverlay').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                hideLetter();
+            }
+        });
+        
+        // Create initial sparkles
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createSparkle, i * 500);
+        }
+    </script>
+</body>
+</html>
