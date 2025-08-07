@@ -277,7 +277,7 @@
     <div class="container">
         <div class="card">
             <div class="photo-frame">
-                <img src="/1.jpg" alt="Foto Istri Tercinta">
+                <img src="/photo.jpg" alt="Foto Istri Tercinta">
             </div>
             
             <h1 class="title">Selamat Ulang Tahun</h1>
@@ -317,113 +317,51 @@
     <button class="music-control" id="musicControl" onclick="toggleMusic()">🎵</button>
     
     <audio id="backgroundMusic" loop>
-        <!-- Musik akan dimuat dari URL online -->
+        https://indahnilamsari.github.io/musik.mp3
     </audio>
 
-    <script>
-        // Floating hearts animation
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDelay = Math.random() * 2 + 's';
-            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            document.body.appendChild(heart);
-            
-            setTimeout(() => {
-                heart.remove();
-            }, 7000);
-        }
-        
-        // Create sparkles
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('sparkle');
-            sparkle.innerHTML = '✨';
-            sparkle.style.left = Math.random() * 100 + 'vw';
-            sparkle.style.top = Math.random() * 100 + 'vh';
-            sparkle.style.animationDelay = Math.random() * 2 + 's';
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 3000);
-        }
-        
-        // Start animations
-        setInterval(createHeart, 1000);
-        setInterval(createSparkle, 2000);
-        
-        // Photo upload functionality
-        const photoFrame = document.querySelector('.photo-frame');
-        const photoInput = document.getElementById('photoInput');
-        
-        photoFrame.addEventListener('click', () => {
-            photoInput.click();
-        });
-        
-        photoInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    photoFrame.innerHTML = `<img src="${e.target.result}" alt="Foto Istri">`;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // Letter functionality
-        function showLetter() {
-            const overlay = document.getElementById('letterOverlay');
-            overlay.classList.add('show');
-            playMusic();
-        }
-        
-        function hideLetter() {
-            const overlay = document.getElementById('letterOverlay');
-            overlay.classList.remove('show');
-        }
-        
-        // Music functionality
-        let isPlaying = false;
-        const music = document.getElementById('backgroundMusic');
-        
-        // Set a romantic background music (you can replace this URL)
-        music.src = 'https://www.soundjay.com/misc/sounds/romantic-music.mp3';
-        
-        function playMusic() {
-            if (!isPlaying) {
-                music.play().catch(e => {
-                    console.log('Audio play failed:', e);
-                });
-                isPlaying = true;
-                document.getElementById('musicControl').innerHTML = '🔊';
-            }
-        }
-        
-        function toggleMusic() {
-            if (isPlaying) {
-                music.pause();
-                isPlaying = false;
-                document.getElementById('musicControl').innerHTML = '🔇';
-            } else {
-                playMusic();
-            }
-        }
-        
-        // Close letter when clicking outside
-        document.getElementById('letterOverlay').addEventListener('click', (e) => {
-            if (e.target === e.currentTarget) {
-                hideLetter();
-            }
-        });
-        
-        // Create initial sparkles
-        for (let i = 0; i < 5; i++) {
-            setTimeout(createSparkle, i * 500);
-        }
-    </script>
+  <script>
+    function createHearts() {
+      const container = document.getElementById('hearts');
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤';
+        heart.classList.add('heart');
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(heart);
+      }
+    }
+
+    function createPetals() {
+      const container = document.getElementById('petals');
+      for (let i = 0; i < 20; i++) {
+        const petal = document.createElement('div');
+        petal.innerHTML = '🌹';
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDelay = Math.random() * 7 + 's';
+        petal.style.fontSize = `${16 + Math.random() * 10}px`;
+        container.appendChild(petal);
+      }
+    }
+
+    function showMessage() {
+      document.getElementById('specialMessage').style.display = 'block';
+      createHearts();
+      createPetals();
+    }
+
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('bgm');
+      audio.muted = false;
+      audio.play().catch(() => {});
+    }, { once: true });
+
+    window.onload = () => {
+      createHearts();
+      createPetals();
+    };
+  </script>
 </body>
 </html>
