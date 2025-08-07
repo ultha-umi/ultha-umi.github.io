@@ -6,8 +6,7 @@
     <title>Selamat Ulang Tahun, Cintaku</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap');
-        
-        * {
+         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -277,12 +276,11 @@
     <div class="container">
         <div class="card">
             <div class="photo-frame">
-                <img src="/photo.jpg" alt="Foto Istri Tercinta">
+                <img id="mainPhoto" src="https://ultha-umi.github.io/photo.jpg" alt="Foto Istri Tercinta">
+                <!-- Ganti URL di atas sesuai kebutuhan -->
             </div>
-            
             <h1 class="title">Selamat Ulang Tahun</h1>
             <p class="subtitle">Untuk istri tercinta yang selalu menerangi hidupku</p>
-            
             <button class="letter-button" onclick="showLetter()">
                 💌 Buka Surat Cinta
             </button>
@@ -295,17 +293,8 @@
             <h2 class="letter-header">Surat Cinta Untukmu</h2>
             <div class="letter-content">
                 <p>Istriku tersayang,</p>
-                
-                <p>Hari ini adalah hari yang istimewa, hari dimana malaikat terindah di dunia ini dilahirkan. Kamu adalah cahaya yang menerangi setiap sudut gelap dalam hidupku, sumber kebahagiaan yang tak pernah habis.</p>
-                
-                <p>Setiap detik bersamamu adalah anugerah yang tak ternilai. Senyummu adalah matahari yang menghangatkan hatiku, tawamu adalah musik terindah yang pernah kudengar. Dalam pelukanmu, aku menemukan rumah yang sesungguhnya.</p>
-                
-                <p>Di hari ulang tahunmu yang spesial ini, aku berdoa agar Allah selalu melindungimu, memberikanmu kesehatan, kebahagiaan, dan segala hal indah yang kamu impikan. Semoga setiap langkahmu selalu diberkahi, setiap doamu dikabulkan.</p>
-                
-                <p>Terima kasih telah menjadi istri terbaik, sahabat terdekat, dan cinta sejatiku. Bersamamu, setiap hari adalah perayaan cinta yang tak berujung.</p>
-                
+                <p>Hari ini adalah hari yang istimewa...</p>
                 <p>Happy Birthday, my love! Aku mencintaimu lebih dari yang bisa diungkapkan kata-kata. 💕</p>
-                
                 <div class="signature">
                     Dengan segala cinta,<br>
                     Suamimu yang mencintaimu selamanya
@@ -314,54 +303,47 @@
         </div>
     </div>
     
-    <button class="music-control" id="musicControl" onclick="toggleMusic()">🎵</button>
+    <button class="music-control" id="musicControl" onclick="toggleMusic()" title="Play/Pause Musik">🎵</button>
     
     <audio id="backgroundMusic" loop>
-        https://indahnilamsari.github.io/musik.mp3
+        <source src="https://indahnilamsari.github.io/musik.mp3" type="audio/mpeg">
+        Maaf, browser Anda tidak mendukung pemutar musik.
     </audio>
 
-  <script>
-    function createHearts() {
-      const container = document.getElementById('hearts');
-      for (let i = 0; i < 15; i++) {
-        const heart = document.createElement('div');
-        heart.innerHTML = '❤';
-        heart.classList.add('heart');
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        container.appendChild(heart);
-      }
-    }
+    <script>
+        const audio = document.getElementById('backgroundMusic');
+        const overlay = document.getElementById('letterOverlay');
+        const musicControl = document.getElementById('musicControl');
 
-    function createPetals() {
-      const container = document.getElementById('petals');
-      for (let i = 0; i < 20; i++) {
-        const petal = document.createElement('div');
-        petal.innerHTML = '🌹';
-        petal.classList.add('petal');
-        petal.style.left = Math.random() * 100 + '%';
-        petal.style.animationDelay = Math.random() * 7 + 's';
-        petal.style.fontSize = `${16 + Math.random() * 10}px`;
-        container.appendChild(petal);
-      }
-    }
+        function showLetter() {
+            overlay.classList.add('show');
+            // Autoplay musik jika belum berjalan
+            if (audio.paused) {
+                audio.play().catch(()=>{});
+            }
+        }
 
-    function showMessage() {
-      document.getElementById('specialMessage').style.display = 'block';
-      createHearts();
-      createPetals();
-    }
+        function hideLetter() {
+            overlay.classList.remove('show');
+        }
 
-    document.addEventListener('click', () => {
-      const audio = document.getElementById('bgm');
-      audio.muted = false;
-      audio.play().catch(() => {});
-    }, { once: true });
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+            } else {
+                audio.pause();
+            }
+        }
 
-    window.onload = () => {
-      createHearts();
-      createPetals();
-    };
-  </script>
+        // Perbarui icon musik sesuai status
+        audio.onplay = () => { musicControl.textContent = "⏸️"; }
+        audio.onpause = () => { musicControl.textContent = "🎵"; }
+
+        // Optional: Play otomatis sekali klik dimana saja (browser block autoplay tanpa user interaction)
+        document.body.addEventListener('click', function autoPlay() {
+            audio.play().catch(()=>{});
+            document.body.removeEventListener('click', autoPlay);
+        });
+    </script>
 </body>
 </html>
