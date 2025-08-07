@@ -6,12 +6,7 @@
     <title>Selamat Ulang Tahun, Cintaku</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Playfair+Display:wght@400;600&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * {margin: 0; padding: 0; box-sizing: border-box;}
         body {
             font-family: 'Playfair Display', serif;
             background: linear-gradient(45deg, #ff6b9d, #c44569, #f8b500, #ff9ff3);
@@ -20,13 +15,11 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .container {
             display: flex;
             justify-content: center;
@@ -34,7 +27,6 @@
             min-height: 100vh;
             position: relative;
         }
-
         .card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -47,7 +39,6 @@
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
-
         .photo-frame {
             width: 200px;
             height: 200px;
@@ -59,18 +50,15 @@
             box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
             animation: photoGlow 3s ease-in-out infinite alternate;
         }
-
         @keyframes photoGlow {
             from { box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4); }
             to { box-shadow: 0 15px 40px rgba(255, 107, 157, 0.8); }
         }
-
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .photo-placeholder {
             width: 100%;
             height: 100%;
@@ -82,7 +70,6 @@
             font-size: 16px;
             text-align: center;
         }
-
         .title {
             font-family: 'Dancing Script', cursive;
             font-size: 3em;
@@ -91,18 +78,15 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
             animation: titlePulse 2s ease-in-out infinite;
         }
-
         @keyframes titlePulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
         }
-
         .subtitle {
             font-size: 1.2em;
             color: #666;
             margin-bottom: 30px;
         }
-
         .letter-button {
             background: linear-gradient(45deg, #ff6b9d, #c44569);
             color: white;
@@ -116,12 +100,10 @@
             transition: all 0.3s ease;
             margin: 20px 0;
         }
-
         .letter-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(196, 69, 105, 0.6);
         }
-
         .letter-overlay {
             position: fixed;
             top: 0;
@@ -136,12 +118,10 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-
         .letter-overlay.show {
             display: flex !important;
             opacity: 1;
         }
-
         .letter {
             background: #fff;
             padding: 40px;
@@ -154,7 +134,6 @@
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
             animation: letterAppear 0.8s ease-out;
         }
-
         @keyframes letterAppear {
             from {
                 transform: scale(0.5) rotate(-5deg);
@@ -165,7 +144,6 @@
                 opacity: 1;
             }
         }
-
         .letter-header {
             font-family: 'Dancing Script', cursive;
             font-size: 2.5em;
@@ -175,18 +153,15 @@
             border-bottom: 2px solid #ff6b9d;
             padding-bottom: 15px;
         }
-
         .letter-content {
             font-size: 1.1em;
             line-height: 1.8;
             color: #444;
             text-align: left;
         }
-
         .letter-content p {
             margin-bottom: 20px;
         }
-
         .signature {
             font-family: 'Dancing Script', cursive;
             font-size: 1.8em;
@@ -194,7 +169,6 @@
             text-align: right;
             margin-top: 30px;
         }
-
         .close-button {
             position: absolute;
             top: 15px;
@@ -211,45 +185,20 @@
             align-items: center;
             justify-content: center;
         }
-
-        .heart {
-            position: absolute;
-            color: #ff6b9d;
-            font-size: 20px;
-            animation: float 6s ease-in-out infinite;
+        /* Love floating style */
+        .heart-float {
+            position: fixed;
+            font-size: 2rem;
             pointer-events: none;
+            z-index: 2000;
+            animation: floatHearts 4s linear infinite;
+            opacity: 0.85;
         }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+        @keyframes floatHearts {
+            0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1;}
+            80% {opacity: 1;}
+            100% { transform: translateY(-110vh) scale(1.6) rotate(360deg); opacity: 0;}
         }
-
-        .sparkle {
-            position: absolute;
-            color: gold;
-            font-size: 16px;
-            animation: sparkle 3s linear infinite;
-            pointer-events: none;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1); }
-        }
-
         .music-control {
             position: fixed;
             bottom: 20px;
@@ -264,8 +213,8 @@
             font-size: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            z-index: 3000;
         }
-
         .music-control:hover {
             transform: scale(1.1);
             background: rgba(255, 107, 157, 1);
@@ -273,11 +222,11 @@
     </style>
 </head>
 <body>
+    <div id="hearts-area"></div>
     <div class="container">
         <div class="card">
             <div class="photo-frame">
                 <img id="mainPhoto" src="https://ultha-umi.github.io/photo.jpg" alt="Foto Istri Tercinta">
-                <!-- Ganti URL di atas sesuai kebutuhan -->
             </div>
             <h1 class="title">Selamat Ulang Tahun</h1>
             <p class="subtitle">Untuk istri tercinta yang selalu menerangi hidupku</p>
@@ -286,7 +235,6 @@
             </button>
         </div>
     </div>
-    
     <div class="letter-overlay" id="letterOverlay">
         <div class="letter">
             <button class="close-button" onclick="hideLetter()">&times;</button>
@@ -305,31 +253,45 @@
             </div>
         </div>
     </div>
-    
     <button class="music-control" id="musicControl" onclick="toggleMusic()" title="Play/Pause Musik">🎵</button>
-    
     <audio id="backgroundMusic" loop>
         <source src="https://indahnilamsari.github.io/musik.mp3" type="audio/mpeg">
         Maaf, browser Anda tidak mendukung pemutar musik.
     </audio>
-
     <script>
+        // Love floating animation
+        function spawnHeart() {
+            const area = document.getElementById('hearts-area');
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.textContent = "❤";
+            heart.style.left = Math.random() * 95 + "vw";
+            heart.style.bottom = "-40px";
+            heart.style.fontSize = (Math.random() * 25 + 25) + "px";
+            heart.style.color = "#ff6b9d";
+            heart.style.opacity = Math.random() * 0.5 + 0.5;
+            heart.style.animationDuration = (3.5 + Math.random() * 2) + "s";
+            area.appendChild(heart);
+
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        // Looping heart spawn
+        setInterval(spawnHeart, 400);
+
+        // Music, popup, and button logic
         const audio = document.getElementById('backgroundMusic');
         const overlay = document.getElementById('letterOverlay');
         const musicControl = document.getElementById('musicControl');
 
         function showLetter() {
             overlay.classList.add('show');
-            // Autoplay musik jika belum berjalan
             if (audio.paused) {
                 audio.play().catch(()=>{});
             }
         }
-
         function hideLetter() {
             overlay.classList.remove('show');
         }
-
         function toggleMusic() {
             if (audio.paused) {
                 audio.play();
@@ -337,12 +299,10 @@
                 audio.pause();
             }
         }
-
-        // Perbarui icon musik sesuai status
         audio.onplay = () => { musicControl.textContent = "⏸️"; }
         audio.onpause = () => { musicControl.textContent = "🎵"; }
 
-        // Optional: Play otomatis sekali klik dimana saja (browser block autoplay tanpa user interaction)
+        // Allow play audio after any click (for mobile/autoplay policy)
         document.body.addEventListener('click', function autoPlay() {
             audio.play().catch(()=>{});
             document.body.removeEventListener('click', autoPlay);
